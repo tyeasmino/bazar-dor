@@ -64,6 +64,7 @@ export default async function FallingProducts() {
                         {fallingProducts.map((product) => (
                             <ProductCard
                                 key={product.id}
+                                id={product.id}
                                 image={
                                     product.image ||
                                     product.categoryIcon

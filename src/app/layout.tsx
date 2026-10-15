@@ -1,4 +1,5 @@
 import Footer from "@/components/shared/Footer";
+import Marquee from "@/components/shared/Marquee";
 import NavbarWrapper from "@/components/shared/NavbarWrapper";
 import type { Metadata } from "next";
 import { Noto_Serif_Bengali } from "next/font/google";
@@ -20,6 +21,9 @@ export default function RootLayout({
     <html lang="bn" className={`${notoSerifBengali.className} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <NavbarWrapper />
+
+        <Marquee />
+
         {children}
 
         <Footer />

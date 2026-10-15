@@ -65,6 +65,7 @@ export default async function Products() {
                         {products.map((product) => (
                             <ProductCard
                                 key={product.id}
+                                id={product.id}
                                 image={
                                     product.image ||
                                     product.categoryIcon

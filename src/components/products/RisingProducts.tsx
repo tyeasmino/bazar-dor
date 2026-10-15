@@ -61,6 +61,7 @@ export default async function RisingProducts() {
                         {risingProducts.map((product) => (
                             <ProductCard
                                 key={product.id}
+                                id={product.id}
                                 image={
                                     product.image ||
                                     product.categoryIcon

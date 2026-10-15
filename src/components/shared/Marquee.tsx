@@ -1,3 +1,4 @@
+import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
@@ -66,9 +67,10 @@ export default async function Marquee() {
                                 : "―";
 
                     return (
-                        <span
+                        <Link
+                            href={`/products/${h.id}`}
                             key={h.id}
-                            className="inline-flex shrink-0 items-center gap-2"
+                            className="hover:border-b-2 border-b-gray-950 inline-flex shrink-0 items-center gap-2"
                         >
                             <span>{h.image}</span>
 
@@ -87,7 +89,7 @@ export default async function Marquee() {
                                     {toBanglaNumber(h.change.pct)}%
                                 </span>
                             </span>
-                        </span>
+                        </Link>
                     );
                 })}
             </div>

@@ -1,5 +1,7 @@
+import Link from "next/link";
 
 export type ProductCardProps = {
+    id: string;
     image?: string;
     title: string;
     unit: string;
@@ -23,6 +25,7 @@ const formatNumber = (value: number | string) =>
     });
 
 export default function ProductCard({
+    id,
     image,
     title,
     unit,
@@ -44,7 +47,9 @@ export default function ProductCard({
     const arrow = isFlat ? "―" : isUp ? "▲" : isDown ? "▼" : "―";
 
     return (
-        <article className="group rounded-2xl border border-gray-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-[#B7DEC5] hover:shadow-lg">
+        <Link
+            href={`/products/${id}`}
+            className="group rounded-2xl border border-gray-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-[#B7DEC5] hover:shadow-lg">
             {/* Product Info */}
             <div className="flex items-center gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#F0F8F2] text-2xl">
@@ -88,6 +93,6 @@ export default function ProductCard({
                     </span>
                 </div>
             </div>
-        </article>
+        </Link>
     );
 }

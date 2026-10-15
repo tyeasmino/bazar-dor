@@ -7,7 +7,7 @@ import Marquee from "@/components/shared/Marquee";
 export default function Home() {
   return (
     <div>
-      <Marquee />
+
 
       <div className="bg-[#F8FBF8]">
         <Hero />
