@@ -1,7 +1,30 @@
-
+"use client"
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/dist/server/api-utils";
 import Link from "next/link";
 
 export default function Signup() {
+
+    const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target)
+        const user = Object.fromEntries(formData.entries() as { name: string, email: string, password: string, confirmPassword: string })
+
+        const { data, error } = await authClient.signUp.email({
+            ...user,
+            callbackURL: "/"
+        })
+
+        if (data) {
+            redirect("/");
+        }
+
+        if (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <main className="flex   items-center justify-center bg-[#F5F8F6] px-4 py-10">
             <div className="w-full max-w-lg">
@@ -18,7 +41,7 @@ export default function Signup() {
 
                 {/* Signup Form */}
                 <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
-                    <form className="space-y-5">
+                    <form onSubmit={onSubmit} className="space-y-5">
                         {/* Name */}
                         <div>
                             <label
@@ -92,7 +115,7 @@ export default function Signup() {
 
                         {/* Submit */}
                         <button
-                            type="button"
+                            type="submit"
                             className="w-full rounded-xl bg-[#05893E] px-4 py-3.5 text-sm font-bold text-white transition hover:bg-[#047532] focus:outline-none focus:ring-2 focus:ring-[#05893E] focus:ring-offset-2"
                         >
                             অ্যাকাউন্ট তৈরি করুন
