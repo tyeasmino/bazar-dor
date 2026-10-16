@@ -211,7 +211,7 @@ export default async function ProductDetails({ params }: PageProps) {
                         </div>
                     </div>
 
-                    <div className="flex shrink-0 items-center justify-between gap-5 rounded-xl bg-[#F0F5F0] px-4 py-3 sm:min-w-[112px] sm:flex-col sm:gap-0 sm:text-center">
+                    <div className="flex shrink-0 items-center justify-between gap-5 rounded-xl bg-[#F0F5F0] px-4 py-3 sm:min-w-28 sm:flex-col sm:gap-0 sm:text-center">
                         <div>
                             <p className="text-xs text-gray-500">
                                 আজকের দাম
@@ -290,7 +290,7 @@ export default async function ProductDetails({ params }: PageProps) {
                         </h2>
 
                         <div className="overflow-x-auto rounded-xl border border-[#E1E9E1]">
-                            <table className="w-full min-w-[600px] border-collapse text-left text-xs">
+                            <table className="w-full min-w-150 border-collapse text-left text-xs">
                                 <thead className="bg-[#FBFDFB] text-gray-500">
                                     <tr>
                                         <th className="px-3 py-3 font-semibold">

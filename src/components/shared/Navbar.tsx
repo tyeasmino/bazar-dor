@@ -7,6 +7,7 @@ import { GiShoppingCart } from "react-icons/gi";
 import NavLinks from "./NavLinks";
 
 import type { Category } from "./NavLinks";
+import UserInfo from "./UserInfo";
 
 type NavbarProps = {
     categories: Category[];
@@ -48,20 +49,8 @@ export default function NavbarComponent({
                         </Link>
 
                         {/* Desktop authentication */}
-                        <div className="hidden shrink-0 items-center gap-5 sm:flex">
-                            <Link
-                                href="/signin"
-                                className="font-medium text-gray-800 hover:text-[#05893E]"
-                            >
-                                সাইন ইন
-                            </Link>
-
-                            <Link
-                                href="/signup"
-                                className="rounded-lg bg-[#05893E] px-5 py-3 font-medium text-white shadow-md transition hover:bg-green-700"
-                            >
-                                সাইন আপ
-                            </Link>
+                        <div className="hidden sm:block">
+                            <UserInfo />
                         </div>
 
                         {/* Mobile menu toggle */}
@@ -131,23 +120,7 @@ export default function NavbarComponent({
                             onNavigate={() => setIsMenuOpen(false)}
                         />
 
-                        <div className="mt-4 flex flex-col gap-3 border-t border-gray-100 pt-4">
-                            <Link
-                                href="/login"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="rounded-lg border border-gray-200 px-4 py-3 text-center font-medium text-gray-800 hover:bg-gray-50"
-                            >
-                                সাইন ইন
-                            </Link>
-
-                            <Link
-                                href="/register"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="rounded-lg bg-[#05893E] px-4 py-3 text-center font-medium text-white hover:bg-green-700"
-                            >
-                                সাইন আপ
-                            </Link>
-                        </div>
+                        <UserInfo />
                     </div>
                 </div>
             )}

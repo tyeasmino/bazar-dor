@@ -1,7 +1,9 @@
 "use client"
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/dist/server/api-utils";
+
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function Signup() {
 
@@ -17,10 +19,12 @@ export default function Signup() {
         })
 
         if (data) {
-            redirect("/");
+            toast.success("Account Created Successfully")
+            redirect("/")
         }
 
         if (error) {
+            toast.error("Something went wrong!")
             console.log(error);
         }
     }

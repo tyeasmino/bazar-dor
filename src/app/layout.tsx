@@ -3,6 +3,7 @@ import Marquee from "@/components/shared/Marquee";
 import NavbarWrapper from "@/components/shared/NavbarWrapper";
 import type { Metadata } from "next";
 import { Noto_Serif_Bengali } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const notoSerifBengali = Noto_Serif_Bengali({
@@ -27,6 +28,11 @@ export default function RootLayout({
         {children}
 
         <Footer />
+
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
       </body>
     </html>
   );
