@@ -25,8 +25,20 @@ export default function Signin() {
             toast.error("Something went wrong!")
             console.log(error);
         }
-
     }
+
+    const handleGoogleSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    };
+
+    const handleGithubSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github"
+        })
+    }
+
 
     return (
         <main className="flex items-center justify-center bg-[#F5F8F6] px-4 py-10">
@@ -117,6 +129,7 @@ export default function Signin() {
                     <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                         {/* Google */}
                         <button
+                            onClick={handleGoogleSignIn}
                             type="button"
                             className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
                         >
@@ -149,6 +162,7 @@ export default function Signin() {
 
                         {/* GitHub */}
                         <button
+                            onClick={handleGithubSignIn}
                             type="button"
                             className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
                         >
