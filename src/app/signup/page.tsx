@@ -56,16 +56,26 @@ export default function Signup() {
     };
 
     const handleGoogleSignUp = async () => {
-        const data = await authClient.signUp.social({
+        const { error } = await authClient.signIn.social({
             provider: "google",
+            callbackURL: "/",
         });
+
+        if (error) {
+            toast.error(error.message || "Google দিয়ে সাইন আপ করা যায়নি");
+        }
     };
 
     const handleGithubSignUp = async () => {
-        const data = await authClient.signUp.social({
-            provider: "github"
-        })
-    }
+        const { error } = await authClient.signIn.social({
+            provider: "github",
+            callbackURL: "/",
+        });
+
+        if (error) {
+            toast.error(error.message || "GitHub দিয়ে সাইন আপ করা যায়নি");
+        }
+    };
 
     return (
         <main className="flex   items-center justify-center bg-[#F5F8F6] px-4 py-10">
