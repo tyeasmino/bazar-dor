@@ -1,12 +1,23 @@
+"use client"
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 
 export default function ProfilePage() {
-    // আপাতত ডিজাইনের জন্য নমুনা তথ্য
-    const user = {
-        name: "রহিম উদ্দিন",
-        email: "rohim@example.com",
-    };
+
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
+
+    const handleUpdateProfile = async (e: React.SubmitEvent<HTMLElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const newUserData = Object.fromEntries(formData.entries()) as { name: string }
+
+        await authClient.updateUser({
+            ...newUserData
+        })
+    }
 
     return (
         <main className="min-h-screen bg-[#F5F8F6] px-4 py-12 sm:px-6">
@@ -28,17 +39,21 @@ export default function ProfilePage() {
 
                         {/* Profile Image */}
                         <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-[#E5F5EB] text-3xl font-bold text-[#05893E]">
-                            {user.name.charAt(0)}
+                            <img
+                                src={user?.image || "/default-avatar.png"}
+                                alt={user?.name || "User"}
+                                className="h-12 w-12 rounded-full object-cover"
+                            />
                         </div>
 
                         {/* User Information */}
                         <div className="min-w-0 flex-1">
                             <div className="">
                                 <h2 className="wrap-break-word text-xl font-bold text-[#1D2921]">
-                                    {user.name}
+                                    {user?.name}
                                 </h2>
                                 <p className="break-all text-sm font-medium text-gray-500 sm:text-base">
-                                    {user.email}
+                                    {user?.email}
                                 </p>
                             </div>
                         </div>
@@ -61,7 +76,7 @@ export default function ProfilePage() {
                         </h2>
                     </div>
 
-                    <form className="space-y-5">
+                    <form onSubmit={handleUpdateProfile} className="space-y-5">
                         {/* Name Input */}
                         <div>
                             <label
@@ -75,7 +90,7 @@ export default function ProfilePage() {
                                 id="name"
                                 name="name"
                                 type="text"
-                                defaultValue={user.name}
+                                defaultValue={user?.name}
                                 placeholder="আপনার নাম লিখুন"
                                 className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#05893E] focus:ring-2 focus:ring-[#05893E]/10"
                             />
@@ -83,7 +98,7 @@ export default function ProfilePage() {
 
                         {/* Update Button */}
                         <button
-                            type="button"
+                            type="submit"
                             className="w-full rounded-xl bg-[#05893E] px-4 py-3.5 text-sm font-bold text-white transition hover:bg-[#047532] focus:outline-none focus:ring-2 focus:ring-[#05893E] focus:ring-offset-2"
                         >
                             আপডেট

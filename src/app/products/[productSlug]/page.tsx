@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type Market = {
     market: string;
@@ -57,6 +58,10 @@ export default async function ProductDetails({ params }: PageProps) {
             { cache: "no-store" }
         );
 
+        if (res.status === 404) {
+            notFound();
+        }
+
         if (!res.ok) {
             throw new Error(`API request failed: ${res.status}`);
         }
@@ -75,35 +80,29 @@ export default async function ProductDetails({ params }: PageProps) {
 
         product = data as Product;
     } catch (error) {
+        // Next.js notFound() error-কে swallow করবে না
+        if (
+            error &&
+            typeof error === "object" &&
+            "digest" in error &&
+            error.digest === "NEXT_HTTP_ERROR_FALLBACK;404"
+        ) {
+            throw error;
+        }
+
         console.error("Product details fetch error:", error);
+
         errorMessage =
             error instanceof Error
                 ? error.message
                 : "পণ্যের তথ্য লোড করা যায়নি।";
     }
 
-    if (!product) {
-        return (
-            <main className="min-h-screen bg-[#F0F5F0] px-4 py-12">
-                <div className="mx-auto max-w-5xl rounded-2xl border border-red-100 bg-white p-8 text-center">
-                    <h1 className="text-xl font-bold text-gray-800">
-                        পণ্যের তথ্য পাওয়া যায়নি
-                    </h1>
-                    <p className="mt-2 text-sm text-gray-500">
-                        {errorMessage || "এই পণ্যটি খুঁজে পাওয়া যায়নি।"}
-                    </p>
-                    <Link
-                        href="/"
-                        className="mt-5 inline-block rounded-lg bg-green-700 px-5 py-2 text-sm font-semibold text-white hover:bg-green-800"
-                    >
-                        হোম পেজে ফিরে যাও
-                    </Link>
-                </div>
-            </main>
-        );
+    if (!productSlug) {
+        notFound()
     }
 
-    const markets = product.markets.map((market) => ({
+    const markets = product?.markets.map((market) => ({
         ...market,
         average: (market.min + market.max) / 2,
     }));
