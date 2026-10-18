@@ -1,33 +1,59 @@
 "use client"
 import { authClient } from "@/lib/auth-client";
-
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function Signup() {
 
-    const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
-        e.preventDefault()
+    const router = useRouter();
 
-        const formData = new FormData(e.target)
-        const user = Object.fromEntries(formData.entries() as { name: string, email: string, password: string, confirmPassword: string })
+    const onSubmit = async (
+        e: React.FormEvent<HTMLFormElement>
+    ) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+
+        const name = String(formData.get("name") ?? "").trim();
+        const email = String(formData.get("email") ?? "").trim();
+        const password = String(formData.get("password") ?? "");
+        const confirmPassword = String(
+            formData.get("confirmPassword") ?? ""
+        );
+
+        if (!name || !email || !password) {
+            toast.error("সবগুলো তথ্য পূরণ করুন");
+            return;
+        }
+
+        if (password.length < 8) {
+            toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            toast.error("দুটি পাসওয়ার্ড মিলছে না");
+            return;
+        }
 
         const { data, error } = await authClient.signUp.email({
-            ...user,
-            callbackURL: "/"
-        })
-
-        if (data) {
-            toast.success("Account Created Successfully")
-            redirect("/")
-        }
+            name,
+            email,
+            password,
+        });
 
         if (error) {
-            toast.error("Something went wrong!")
+            toast.error(error.message || "অ্যাকাউন্ট তৈরি করা যায়নি");
             console.log(error);
+            return;
         }
-    }
+
+        if (data) {
+            toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
+            router.push("/signin");
+        }
+    };
 
     return (
         <main className="flex   items-center justify-center bg-[#F5F8F6] px-4 py-10">

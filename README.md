@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর (BazarDor)
 
-## Getting Started
+**বাজার দর (BazarDor)** is a Bangla-based web application that helps users explore daily prices of essential products and understand price changes over time. The platform provides a simple and user-friendly interface to browse products by category, compare prices, and stay informed about market trends.
 
-First, run the development server:
+## ✨ Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **📊 Daily Product Prices:** View today's prices of essential products along with previous price information and price changes.
+- **📂 Category-Based Browsing:** Explore products by category with relevant icons and product details.
+- **↕️ Product Sorting:** Sort products by price (low to high, high to low) or alphabetically by name.
+- **🔐 User Authentication:** Register and sign in using email and password, or authenticate with Google and GitHub through Better Auth.
+- **🔔 Toast Notifications:** Receive feedback for authentication actions, validation errors, and other important events.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js** — React framework for building the application.
+- **React** — Component-based user interface.
+- **TypeScript** — Type safety and improved developer experience.
+- **Tailwind CSS** — Responsive styling and UI design.
+- **Better Auth** — Authentication with email/password and social providers.
+- **React Hot Toast** — Toast notifications for success and error messages.
+- **BazarDor Products API** — Fetching product information and market prices.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+Make sure you have the following installed:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js
+- npm, yarn, pnpm, or bun
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. Clone the repository:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone YOUR_REPOSITORY_URL
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Navigate to the project directory:
+
+   ```bash
+   cd YOUR_PROJECT_DIRECTORY
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Configure the environment variables in a `.env.local` file according to your Better Auth and OAuth provider configuration.
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open http://localhost:3000 in your browser.
+
+## 🔑 Authentication
+
+BazarDor uses Better Auth to support:
+
+- Email and password registration
+- Email and password sign-in
+- Google authentication
+- GitHub authentication
+- User-friendly authentication feedback
+
+Google and GitHub authentication require valid OAuth credentials and the appropriate callback URL configuration.
+
+## 🌐 Product Data
+
+Product information is fetched from the BazarDor Products API:
+
+`https://openapi.programming-hero.com/api/bazardor/products`
+
+Category-specific products can be retrieved using the category query parameter.
+
+## 📱 Responsive Design
+
+The interface is designed to provide a consistent browsing experience across mobile, tablet, and desktop devices.
+
+## 🎯 Project Goal
+
+The goal of BazarDor is to make essential market price information easier to access and understand through a simple, accessible, and Bangla-friendly digital platform.
+
+---
+
+**Built with ❤️ for a smarter shopping experience.**

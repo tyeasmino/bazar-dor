@@ -33,9 +33,9 @@ export default async function RisingProducts() {
     const data: Product[] = await res.json();
     const products = Array.isArray(data) ? data : [];
 
-    // গতকালের তুলনায় দাম বেড়েছে এমন প্রথম ৬টি পণ্য
     const risingProducts = products
         .filter((product) => product.today > product.yesterday)
+        .sort((a, b) => b.change.pct - a.change.pct)
         .slice(0, 6);
 
 
@@ -70,7 +70,6 @@ export default async function RisingProducts() {
                                 unit={product.unit}
                                 price={product.today}
                                 change={product.change}
-                                previousPrice={product.yesterday}
                             />
                         ))}
                     </div>

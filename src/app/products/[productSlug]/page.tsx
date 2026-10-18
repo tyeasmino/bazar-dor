@@ -98,11 +98,11 @@ export default async function ProductDetails({ params }: PageProps) {
                 : "পণ্যের তথ্য লোড করা যায়নি।";
     }
 
-    if (!productSlug) {
+    if (!productSlug || !product) {
         notFound()
     }
 
-    const markets = product?.markets.map((market) => ({
+    const markets = product.markets.map((market) => ({
         ...market,
         average: (market.min + market.max) / 2,
     }));

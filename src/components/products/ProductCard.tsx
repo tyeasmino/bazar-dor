@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export type ProductCardProps = {
-    id: string;
+    id: number;
     image?: string;
     title: string;
     unit: string;
