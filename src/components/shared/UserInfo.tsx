@@ -1,11 +1,13 @@
 
 "use client";
-
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function UserInfo() {
+    const pathname = usePathname();
+
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
@@ -94,38 +96,43 @@ export default function UserInfo() {
                     <div className="hidden shrink-0 items-center gap-5 sm:flex">
                         <Link
                             href="/signin"
-                            className="font-medium text-gray-800 hover:text-[#05893E]"
+                            className={`rounded-lg px-5 py-3 font-medium transition ${pathname === "/signin"
+                                ? "bg-[#05893E] text-white shadow-md"
+                                : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                                }`}
                         >
                             সাইন ইন
                         </Link>
 
                         <Link
                             href="/signup"
-                            className="rounded-lg bg-[#05893E] px-5 py-3
-                            font-medium text-white shadow-md
-                            transition hover:bg-green-700"
+                            className={`rounded-lg px-5 py-3 font-medium transition ${pathname === "/signup"
+                                ? "bg-[#05893E] text-white shadow-md"
+                                : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                                }`}
                         >
                             সাইন আপ
                         </Link>
                     </div>
 
                     {/* Mobile buttons */}
-                    <div className="mt-4 flex flex-col gap-3 border-t
-                    border-gray-100 pt-4 sm:hidden">
+                    <div className="mt-4 flex flex-col gap-3 border-t border-gray-100 pt-4 sm:hidden">
                         <Link
                             href="/signin"
-                            className="rounded-lg border border-gray-200
-                            px-4 py-3 text-center font-medium text-gray-800
-                            hover:bg-gray-50"
+                            className={`rounded-lg border px-4 py-3 text-center font-medium transition ${pathname === "/signin"
+                                ? "border-[#05893E] bg-[#05893E] text-white shadow-md"
+                                : "border-gray-200 bg-gray-100 text-gray-800 hover:bg-gray-200"
+                                }`}
                         >
                             সাইন ইন
                         </Link>
 
                         <Link
                             href="/signup"
-                            className="rounded-lg bg-[#05893E] px-4 py-3
-                            text-center font-medium text-white
-                            hover:bg-green-700"
+                            className={`rounded-lg border px-4 py-3 text-center font-medium transition ${pathname === "/signup"
+                                ? "border-[#05893E] bg-[#05893E] text-white shadow-md"
+                                : "border-gray-200 bg-gray-100 text-gray-800 hover:bg-gray-200"
+                                }`}
                         >
                             সাইন আপ
                         </Link>

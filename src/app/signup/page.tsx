@@ -55,6 +55,18 @@ export default function Signup() {
         }
     };
 
+    const handleGoogleSignUp = async () => {
+        const data = await authClient.signUp.social({
+            provider: "google",
+        });
+    };
+
+    const handleGithubSignUp = async () => {
+        const data = await authClient.signUp.social({
+            provider: "github"
+        })
+    }
+
     return (
         <main className="flex   items-center justify-center bg-[#F5F8F6] px-4 py-10">
             <div className="w-full max-w-lg">
@@ -161,15 +173,16 @@ export default function Signup() {
                         <div className="h-px flex-1 bg-gray-200" />
                     </div>
 
-                    <div className="flex gap-4">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                         {/* Google */}
                         <button
+                            onClick={handleGoogleSignUp}
                             type="button"
                             className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
                         >
                             <svg
                                 viewBox="0 0 48 48"
-                                className="h-5 w-5"
+                                className="h-5 w-5 shrink-0"
                                 aria-hidden="true"
                             >
                                 <path
@@ -184,28 +197,30 @@ export default function Signup() {
                                 <path
                                     fill="#FBBC05"
                                     d="M10.53 28.59a14.4 14.4 0 0 1 0-9.18l-7.98-6.19a23.9 23.9 0 0 0 0 21.56l7.98-6.19Z"
-                                    transform="translate(0 0)"
                                 />
                                 <path
                                     fill="#34A853"
                                     d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.14 1.45-4.89 2.3-8.18 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48Z"
                                 />
                             </svg>
+
                             Google দিয়ে চালিয়ে যান
                         </button>
 
                         {/* GitHub */}
                         <button
+                            onClick={handleGithubSignUp}
                             type="button"
                             className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
                         >
                             <svg
                                 viewBox="0 0 24 24"
-                                className="h-5 w-5 fill-current"
+                                className="h-5 w-5 shrink-0 fill-current"
                                 aria-hidden="true"
                             >
                                 <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.31-3.76-1.31-.5-1.28-1.24-1.62-1.24-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.21 1.15-2.99-.12-.28-.5-1.42.11-2.95 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.15 1.77 1.15 2.99 0 4.27-2.61 5.21-5.09 5.49.4.35.76 1.02.76 2.06v3.07c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
                             </svg>
+
                             GitHub দিয়ে চালিয়ে যান
                         </button>
                     </div>
